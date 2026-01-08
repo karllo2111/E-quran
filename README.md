@@ -44,8 +44,7 @@
 
 ```bash
 # Clone repository
-git clone [https://github.com/username/e-quran.git](https://github.com/username/e-quran.git)
-
+git clone (repo url)
 # Masuk ke direktori
 cd e-quran
 
