@@ -45,6 +45,7 @@
 ```bash
 # Clone repository
 git clone (repo url)
+
 # Masuk ke direktori
 cd e-quran
 
