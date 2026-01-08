@@ -82,6 +82,13 @@ export default function DetailSurat() {
     setShowPlayer(false);
   };
 
+  const navigateSurat = (step: number) => {
+    const nextId = parseInt(id as string) + step;
+    if (nextId >= 1 && nextId <= 114) {
+      router.push(`/surat/${nextId}`); // Sesuaikan dengan route detail suratmu
+    }
+  };
+
   if (loading) return <LoadingBar />;
   if (!surat) return <div className="p-10 text-center">Data surat tidak ditemukan. Cek folder api/surah/[id]</div>;
 
@@ -91,11 +98,32 @@ export default function DetailSurat() {
 
       {/* HEADER */}
       <div className="bg-emerald-900 text-white relative z-50">
-        <div className="max-w-5xl mx-auto px-6 py-6">
-          <button onClick={() => router.back()} className="mb-4 flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            Kembali
-          </button>
+
+        <div className=" max-w-5xl mx-auto px-6 py-6">
+
+          <div className="flex justify-between mb-3">
+            <button
+              onClick={() => {
+                const currentId = parseInt(id as string);
+                if (currentId <= 1) {
+                  router.push('/');
+                } else {
+                  router.push(`/surat/${currentId - 1}`);
+                }
+              }}
+              className="mb-4 flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              Kembali
+            </button>
+
+            <button
+              onClick={() => router.push(`/surat/${parseInt(id as string) + 1}`)}
+              className="mb-4 flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase"          >
+              Selanjutnya
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path d="M9 5l7 7-7 7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
@@ -227,6 +255,53 @@ export default function DetailSurat() {
           <audio ref={audioRef} src={surat.audioFull[selectedQari.id]} onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)} onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)} onEnded={handleClosePlayer} />
         </div>
       )}
+
+      {/* CONTENT SELESAI */}
+      <div className={`max-w-5xl mx-auto px-4 md:px-6 pb-20 ${showPlayer ? 'pb-40' : 'pb-20'}`}>
+
+        <div className="flex flex-col sm:flex-row gap-4 pt-10 border-t border-slate-200">
+          {/* Tombol Sebelumnya */}
+          {parseInt(id as string) > 1 && (
+            <button
+              onClick={() => router.push(`/surat/${parseInt(id as string) - 1}`)}
+              className="flex-1 group p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-emerald-200 transition-all text-left"
+            >
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Surat Sebelumnya</span>
+              <div className="flex items-center gap-3 mt-1">
+                <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-emerald-50 text-slate-400 group-hover:text-emerald-600 transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+                <span className="font-bold text-slate-700">Kembali</span>
+              </div>
+            </button>
+          )}
+
+          {/* Tombol Beranda (Tengah/Mobile) */}
+          <button
+            onClick={() => router.push('/')}
+            className="sm:w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 hover:text-emerald-600 shadow-sm"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" strokeWidth="2" /></svg>
+          </button>
+
+          {/* Tombol Selanjutnya */}
+          {parseInt(id as string) < 114 && (
+            <button
+              onClick={() => router.push(`/surat/${parseInt(id as string) + 1}`)}
+              className="flex-1 group p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-emerald-200 transition-all text-right"
+            >
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Surat Selanjutnya</span>
+              <div className="flex items-center justify-end gap-3 mt-1">
+                <span className="font-bold text-slate-700">Lanjutkan</span>
+                <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white group-hover:bg-emerald-600 transition-colors shadow-md shadow-emerald-100">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+              </div>
+            </button>
+          )}
+        </div>
+      </div>
+
     </main>
   );
 }

@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UNDER DEVELOPED
 
-## Getting Started
+# 📖 Al-Qur'an Digital Modern
 
-First, run the development server:
+<p align="center">
+  <img src="https://e-quran-7n89.vercel.app/favicon.ico" width="80" alt="Logo" />
+</p>
+
+<h3 align="center">Kalamullah dalam Genggaman</h3>
+
+<p align="center">
+  Aplikasi Al-Qur'an Digital berbasis web yang dibangun dengan <strong>Next.js 15</strong>, memberikan pengalaman membaca yang tenang, bersih, dan modern.
+  <br />
+  <a href="https://e-quran-7n89.vercel.app/"><strong>Explore Live Demo »</strong></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+</p>
+
+---
+
+## ✨ Fitur Utama
+
+- 🟢 **114 Surat Lengkap** - Data akurat langsung dari sumber terpercaya.
+- 🎧 **Multi-Qari Audio** - Dengarkan murottal dari 6 Qari internasional pilihan.
+- 📖 **Tafsir Lengkap** - Tersedia tafsir per ayat untuk pemahaman lebih dalam.
+- 🔍 **Pencarian Cepat** - Cari surat berdasarkan nama Latin dengan instan.
+- 📱 **Responsive Design** - Tampilan optimal di smartphone, tablet, maupun desktop.
+- 🎨 **Modern UI** - Desain mewah dengan sentuhan *glassmorphism* dan ornamen Islami.
+
+## 🚀 Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **Icons & Fonts:** Lucide React, Arabic Fonts
+- **Deployment:** Vercel
+- **API Source:** [equran.id](https://equran.id/apiv2)
+
+## 🛠️ Instalasi Lokal
 
 ```bash
+# Clone repository
+git clone [https://github.com/username/e-quran.git](https://github.com/username/e-quran.git)
+
+# Masuk ke direktori
+cd e-quran
+
+# Install dependencies
+npm install
+
+# Jalankan server local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

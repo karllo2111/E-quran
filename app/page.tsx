@@ -51,7 +51,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-emerald-300 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-            E-Qur&apos;an Buatan Anak SMKN10
+            E-Qur&apos;an aplikasi alquran digital
           </div>
           <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
             Temukan Ketenangan dalam <span className="text-amber-400">Bacaan</span>
