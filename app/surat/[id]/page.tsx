@@ -93,7 +93,7 @@ export default function DetailSurat() {
       <div className="bg-emerald-900 text-white relative z-50">
         <div className="max-w-5xl mx-auto px-6 py-6">
           <button onClick={() => router.back()} className="mb-4 flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             Kembali
           </button>
 
@@ -109,7 +109,7 @@ export default function DetailSurat() {
               <div className="relative flex-1 md:w-64">
                 <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="w-full bg-white/10 border border-white/20 p-3 rounded-xl flex items-center justify-between text-xs">
                   {selectedQari.name}
-                  <svg className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
                 {isDropdownOpen && (
                   <div className="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-2xl border border-slate-100 py-1 z-[100]">
@@ -126,32 +126,62 @@ export default function DetailSurat() {
       </div>
 
       {/* CONTENT */}
-      <div className={`max-w-5xl mx-auto px-6 py-10 ${showPlayer ? 'pb-32' : 'pb-10'}`}>
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-8">
-          <div className="text-slate-600 leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: surat.deskripsi }} />
+      <div className={`max-w-5xl mx-auto px-4 md:px-6 py-6 md:py-10 ${showPlayer ? 'pb-32' : 'pb-10'}`}>
+
+        {/* Card Deskripsi Surat */}
+        <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm border border-slate-100 mb-6 md:mb-8">
+          <div className="text-slate-600 leading-relaxed text-xs md:text-sm" dangerouslySetInnerHTML={{ __html: surat.deskripsi }} />
         </div>
 
         <div className="space-y-4">
           {surat.ayat?.map((ayat: any) => (
-            <div key={ayat.nomorAyat} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-              <div className="p-6 md:p-8 flex flex-col gap-6">
-                <div className="flex justify-between items-start gap-6">
-                  <div className="flex flex-row md:flex-col gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center font-bold text-xs border border-slate-100">{ayat.nomorAyat}</div>
-                    <button onClick={() => { if(partialAudioRef.current) { partialAudioRef.current.src = ayat.audio[selectedQari.id]; partialAudioRef.current.play(); }}} className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"><svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M8 5v14l11-7z"/></svg></button>
-                    <button onClick={() => setOpenTafsir(openTafsir === ayat.nomorAyat ? null : ayat.nomorAyat)} className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${openTafsir === ayat.nomorAyat ? 'bg-amber-500 text-white' : 'bg-slate-50 text-slate-400 hover:bg-amber-500 hover:text-white'}`}><svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current" strokeWidth="2.5"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg></button>
+            <div key={ayat.nomorAyat} className="bg-white rounded-xl md:rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+              <div className="p-4 md:p-8 flex flex-col gap-4 md:gap-6">
+
+                <div className="flex flex-col-reverse md:flex-row justify-between items-start gap-4 md:gap-6">
+                  {/* Action Buttons & Nomor Ayat */}
+                  <div className="flex flex-row md:flex-col gap-2 w-full md:w-auto">
+                    <div className="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center font-bold text-xs border border-slate-100">
+                      {ayat.nomorAyat}
+                    </div>
+                    <button
+                      onClick={() => { if (partialAudioRef.current) { partialAudioRef.current.src = ayat.audio[selectedQari.id]; partialAudioRef.current.play(); } }}
+                      className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"
+                    >
+                      <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M8 5v14l11-7z" /></svg>
+                    </button>
+                    <button
+                      onClick={() => setOpenTafsir(openTafsir === ayat.nomorAyat ? null : ayat.nomorAyat)}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${openTafsir === ayat.nomorAyat ? 'bg-amber-500 text-white' : 'bg-slate-50 text-slate-400 hover:bg-amber-500 hover:text-white'}`}
+                    >
+                      <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current" strokeWidth="2.5"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                    </button>
                   </div>
-                  <p className="text-3xl md:text-4xl font-arabic text-right leading-[4rem] text-slate-800 grow dir-rtl">{ayat.teksArab}</p>
+
+                  {/* Teks Arab */}
+                  <p
+                    className="text-2xl md:text-4xl font-arabic text-right leading-[3.5rem] md:leading-[5rem] text-slate-800 grow w-full"
+                    dir="rtl"
+                  >
+                    {ayat.teksArab}
+                  </p>
                 </div>
+
+                {/* Latin & Terjemahan */}
                 <div className="space-y-2">
-                  <p className="text-emerald-700 font-bold italic text-xs">{ayat.teksLatin}</p>
-                  <p className="text-slate-600 text-base leading-relaxed">{ayat.teksIndonesia}</p>
+                  <p className="text-emerald-700 font-bold italic text-[11px] md:text-sm leading-relaxed">
+                    {ayat.teksLatin}
+                  </p>
+                  <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                    {ayat.teksIndonesia}
+                  </p>
                 </div>
               </div>
 
+              {/* Section Tafsir */}
               {openTafsir === ayat.nomorAyat && (
-                <div className="bg-amber-50/40 border-t border-amber-100 p-6">
-                  <p className="text-slate-700 text-sm leading-relaxed">
+                <div className="bg-amber-50/40 border-t border-amber-100 p-4 md:p-6">
+                  <p className="text-slate-700 text-xs md:text-sm leading-relaxed">
                     {tafsir?.tafsir?.find((t: any) => t.ayat === ayat.nomorAyat)?.teks || "Tafsir tidak tersedia."}
                   </p>
                 </div>
@@ -167,31 +197,31 @@ export default function DetailSurat() {
           <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 w-[30%]">
               <div className="w-10 h-10 bg-emerald-500 rounded flex items-center justify-center shrink-0 shadow-lg">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-slate-900"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-slate-900"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" /></svg>
               </div>
               <div className="hidden sm:block truncate text-white text-[13px] font-bold">
-                {surat.namaLatin} <br/> <span className="text-[#b3b3b3] text-[10px] font-normal">{selectedQari.name}</span>
+                {surat.namaLatin} <br /> <span className="text-[#b3b3b3] text-[10px] font-normal">{selectedQari.name}</span>
               </div>
             </div>
 
             <div className="flex flex-col items-center max-w-[40%] w-full gap-1.5">
               <div className="flex items-center gap-5">
                 <button onClick={() => { isPlaying ? audioRef.current?.pause() : audioRef.current?.play(); setIsPlaying(!isPlaying); }} className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-105 transition-all">
-                  {isPlaying ? <svg className="w-4 h-4 fill-black" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> : <svg className="w-4 h-4 fill-black ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>}
+                  {isPlaying ? <svg className="w-4 h-4 fill-black" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg> : <svg className="w-4 h-4 fill-black ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>}
                 </button>
               </div>
               <div className="flex items-center gap-2 w-full text-[10px] text-[#b3b3b3]">
                 <span>{formatTime(currentTime)}</span>
-                <input type="range" min="0" max={duration || 0} value={currentTime} onChange={(e) => { if(audioRef.current) audioRef.current.currentTime = Number(e.target.value); }} className="w-full accent-emerald-500 h-1 bg-[#4d4d4d] rounded-full appearance-none cursor-pointer"/>
+                <input type="range" min="0" max={duration || 0} value={currentTime} onChange={(e) => { if (audioRef.current) audioRef.current.currentTime = Number(e.target.value); }} className="w-full accent-emerald-500 h-1 bg-[#4d4d4d] rounded-full appearance-none cursor-pointer" />
                 <span>{formatTime(duration)}</span>
               </div>
             </div>
 
             <div className="flex items-center justify-end gap-3 w-[30%]">
-              <button onClick={() => { if(audioRef.current) { audioRef.current.muted = !isMuted; setIsMuted(!isMuted); }}} className="text-[#b3b3b3] hover:text-white">
-                {isMuted ? <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.03a7.95 7.95 0 003.72-1.94L19.73 21 21 19.73 4.27 3z"/></svg> : <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>}
+              <button onClick={() => { if (audioRef.current) { audioRef.current.muted = !isMuted; setIsMuted(!isMuted); } }} className="text-[#b3b3b3] hover:text-white">
+                {isMuted ? <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.03a7.95 7.95 0 003.72-1.94L19.73 21 21 19.73 4.27 3z" /></svg> : <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>}
               </button>
-              <button onClick={handleClosePlayer} className="text-[#b3b3b3] hover:text-white"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2"/></svg></button>
+              <button onClick={handleClosePlayer} className="text-[#b3b3b3] hover:text-white"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2" /></svg></button>
             </div>
           </div>
           <audio ref={audioRef} src={surat.audioFull[selectedQari.id]} onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)} onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)} onEnded={handleClosePlayer} />
