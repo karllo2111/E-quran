@@ -9,6 +9,7 @@ export interface AudioFull {
 
 export interface Surat {
     nomor: number;
+    nama: string;
     namaLatin: string;
     arti: string;
     jumlahAyat: number;
