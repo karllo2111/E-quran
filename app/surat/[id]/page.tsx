@@ -187,12 +187,20 @@ export default function DetailSurat() {
                   </div>
 
                   {/* Teks Arab */}
-                  <p
-                    className="text-2xl md:text-4xl font-arabic text-right leading-[3.5rem] md:leading-[5rem] text-slate-800 grow w-full"
-                    dir="rtl"
-                  >
-                    {ayat.teksArab}
-                  </p>
+                  <div className="w-full flex flex-col gap-6"> 
+  <p
+    className="font-quran-premium text-3xl md:text-4xl text-right text-slate-800 leading-relaxed block w-full h-auto overflow-visible py-4"
+    dir="rtl"
+    style={{ 
+    lineHeight: '3.5',      // Paksa jarak antar baris sangat lebar
+    paddingTop: '2rem',     // Jarak tambahan di atas ayat
+    paddingBottom: '2rem',  // Jarak tambahan di bawah ayat
+    wordBreak: 'keep-all',  // Mencegah kata Arab terpotong di tengah
+  }}
+  >
+    {ayat.teksArab}
+  </p>
+</div>
                 </div>
 
                 {/* Latin & Terjemahan */}
